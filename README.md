@@ -1,3 +1,3 @@
 # AnnaFell
-Venda de Hardware e Periféricos. kkkkkkkkkkkkkkkkkkkkkkk
+Venda de Hardware e Periféricos. 
 
