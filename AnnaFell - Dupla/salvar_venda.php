@@ -19,7 +19,7 @@ $nome_completo = "";
 if(file_exists($arquivo_usuario)) {
     $arq = fopen($arquivo_usuario, "r");
     if ($arq) {
-        $nome_completo = trim(fgets($arq)); // primeira linha
+        $nome_completo = trim(fgets($arq));                                         // primeira linha
         fclose($arq);
     }
 }
@@ -43,7 +43,6 @@ foreach($carrinho as $item) {
 $dados .= "Total da compra: R$ " . number_format($total, 2, ',', '.') . "\n";
 
 $arquivo = "vendas/venda_" . $numero_venda . ".dat";
-// Substituído file_put_contents por fopen/fwrite/fclose
 $arq = fopen($arquivo, "w");
 fwrite($arq, $dados);
 fclose($arq);

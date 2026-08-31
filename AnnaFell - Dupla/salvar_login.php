@@ -3,6 +3,9 @@ if(!isset($_SESSION)) {
     session_start();
 }
 
+include "../app/cons.php";        
+require_once "../app/DLL.php";
+
 extract($_POST);
 $cpf = $_SESSION['cpf_usuario'] ?? '';
 
@@ -11,13 +14,18 @@ if (empty($cpf)) {
     exit();
 }
 
+$sql_verifica = "SELECT login FROM logins WHERE login = '$login'";                                        //mudei
+$resultado = banco($server, $user, $password, $db, $sql_verifica);                                       //mudei
+
+if ($resultado->num_rows > 0) {
+    header("Location: cadastro2.php?erro=login_existente");
+    exit();
+}
+
 $senha_criptografada = md5($senha);
-$arquivo = "login/" . $login . ".dat";
-$arq = fopen($arquivo, "w");
-fwrite($arq, $login . "\n");
-fwrite($arq, $senha_criptografada . "\n");
-fwrite($arq, $cpf . "\n");
-fclose($arq);
+
+$sql = "INSERT INTO logins (login, senha, cpf) VALUES ('$login', '$senha_criptografada', '$cpf')";      //mudei
+banco($server, $user, $password, $db, $sql);                                                            //mudei
 
 unset($_SESSION['cpf_usuario']);
 header("Location: login.php?cadastro=ok");

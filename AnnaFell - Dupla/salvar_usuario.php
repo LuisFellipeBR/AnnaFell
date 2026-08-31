@@ -2,19 +2,26 @@
 if(!isset($_SESSION)) {
     session_start();
 }
+
+include "../app/cons.php";                                                                            //mudei
+require_once "../app/DLL.php";                                                                        //mudei
+
 extract($_POST); 
 
 $cpf_limpo = preg_replace('/[^0-9]/', '', $cpf);
 
-$arq = fopen("usuarios/" . $cpf_limpo . ".dat", "w");
-fwrite($arq, $nome . "\n");
-fwrite($arq, $cpf . "\n");
-fwrite($arq, $endereco . "\n");
-fwrite($arq, $bairro . "\n");
-fwrite($arq, $cidade . "\n");
-fwrite($arq, $estado . "\n");
-fwrite($arq, $cep . "\n");
-fclose($arq);
+$sql_verifica = "SELECT cpf FROM usuarios WHERE cpf = '$cpf_limpo'";                                  //mudei
+$resultado = banco($server, $user, $password, $db, $sql_verifica);                                    //mudei
+
+if ($resultado->num_rows > 0) {
+    header("Location: cadastro1.php?erro=cpf_existente");
+    exit();
+}
+
+$sql = "INSERT INTO usuarios (cpf, nome, endereco, bairro, cidade, estado, cep)
+        VALUES ('$cpf_limpo', '$nome', '$endereco', '$bairro', '$cidade', '$estado', '$cep')";      //mudei
+
+banco($server, $user, $password, $db, $sql);                                                        //mudei
 
 $_SESSION['cpf_usuario'] = $cpf_limpo;
 header("Location: cadastro2.php");
