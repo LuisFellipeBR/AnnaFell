@@ -3,8 +3,8 @@ if(!isset($_SESSION)) {
     session_start();
 }
 
-include "../app/cons.php";                                                                              //mudei
-require_once "../app/DLL.php";                                                                          //mudei
+include "cons.php";                                                                              //mudei
+require_once "DLL.php";                                                                          //mudei
 
 if (!isset($_SESSION['carrinho']) || empty($_SESSION['carrinho'])) { //se nao tiver nada, index
     header("Location: index.php");
