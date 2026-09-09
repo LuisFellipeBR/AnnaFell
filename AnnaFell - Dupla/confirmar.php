@@ -2,8 +2,10 @@
 if(!isset($_SESSION)) {
     session_start();
 }
+include "cons.php";
+require_once "DLL.php";
 
-if(!isset($_SESSION['usuario_logado']) || empty($_SESSION['carrinho'])) {
+if (!isset($_SESSION['usuario_logado']) || empty($_SESSION['carrinho'])) {
     header("Location: login.php");
     exit();
 }
@@ -12,19 +14,16 @@ $carrinho = $_SESSION['carrinho'];
 $usuario = $_SESSION['usuario_logado'];
 $cpf = $_SESSION['cpf_usuario'];
 
-$arquivo_usuario = "usuarios/" . $cpf . ".dat";
+// Buscar nome do usuário
+$consulta = "SELECT nome FROM usuarios WHERE cpf = '$cpf'";
+$resultado = banco($server, $user, $password, $db, $consulta);
 $nome_usuario = "";
-
-if(file_exists($arquivo_usuario)) {
-    $arq = fopen($arquivo_usuario, "r");
-    if ($arq) {
-        $nome_usuario = trim(fgets($arq)); // primeira linha = nome completo
-        fclose($arq);
-    }
+if ($linha = $resultado->fetch_assoc()) {
+    $nome_usuario = $linha['nome'];
 }
 
 $total = 0;
-foreach($carrinho as $item) {
+foreach ($carrinho as $item) {
     $total += $item['preco'] * $item['quantidade'];
 }
 ?>

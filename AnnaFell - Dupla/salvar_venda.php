@@ -2,51 +2,59 @@
 if(!isset($_SESSION)) {
     session_start();
 }
+include "cons.php";
+require_once "DLL.php";
 
-if(!isset($_SESSION['usuario_logado']) || empty($_SESSION['carrinho'])) {
+if (!isset($_SESSION['usuario_logado']) || empty($_SESSION['carrinho'])) {
     header("Location: index.php");
     exit();
 }
 
-extract($_POST);  // cria $pagamento
+extract($_POST); // $pagamento
 
 $carrinho = $_SESSION['carrinho'];
 $usuario = $_SESSION['usuario_logado'];
 $cpf = $_SESSION['cpf_usuario'];
 
-$arquivo_usuario = "usuarios/" . $cpf . ".dat";
+// Buscar nome do cliente (usando a função banco normal)
+$consulta_nome = "SELECT nome FROM usuarios WHERE cpf = '$cpf'";
+$resultado_nome = banco($server, $user, $password, $db, $consulta_nome);
 $nome_completo = "";
-if(file_exists($arquivo_usuario)) {
-    $arq = fopen($arquivo_usuario, "r");
-    if ($arq) {
-        $nome_completo = trim(fgets($arq)); // primeira linha
-        fclose($arq);
-    }
+if ($linha = $resultado_nome->fetch_assoc()) {
+    $nome_completo = $linha['nome'];
 }
 
 $numero_venda = date("YmdHis") . rand(100, 999);
-$data = date("d/m/Y");
+$data = date("Y-m-d");
 $hora = date("H:i:s");
-
-$dados = "Número da Venda: $numero_venda\n";
-$dados .= "Nome do Usuário: $nome_completo\n";
-$dados .= "Data: $data\n";
-$dados .= "Hora: $hora\n";
-$dados .= "Forma de Pagamento: $pagamento\n";
-$dados .= "Itens:\n";
 $total = 0;
-foreach($carrinho as $item) {
-    $subtotal = $item['preco'] * $item['quantidade'];
-    $total += $subtotal;
-    $dados .= "- " . $item['nome'] . " | Quantidade: " . $item['quantidade'] . " | Preço unitário: R$ " . number_format($item['preco'], 2, ',', '.') . " | Subtotal: R$ " . number_format($subtotal, 2, ',', '.') . "\n";
+foreach ($carrinho as $item) {
+    $total += $item['preco'] * $item['quantidade'];
 }
-$dados .= "Total da compra: R$ " . number_format($total, 2, ',', '.') . "\n";
 
-$arquivo = "vendas/venda_" . $numero_venda . ".dat";
-// Substituído file_put_contents por fopen/fwrite/fclose
-$arq = fopen($arquivo, "w");
-fwrite($arq, $dados);
-fclose($arq);
+// 1. Inserir cabeçalho da venda com keep_open = true
+$sql_venda = "INSERT INTO vendas (numero, cpf_cliente, data, hora, pagamento, total) 
+              VALUES ('$numero_venda', '$cpf', '$data', '$hora', '$pagamento', '$total')";
+$res_venda = banco($server, $user, $password, $db, $sql_venda, true); // mantém conexão aberta
+
+// 2. Obter o ID da venda usando a conexão que ficou aberta
+$id_venda = $res_venda->conn->insert_id;
+
+// 3. Inserir os itens (usando a mesma conexão, ou podemos usar banco() normalmente,
+//    mas para evitar abrir outra conexão, vamos usar a que já está aberta)
+foreach ($carrinho as $item) {
+    $subtotal = $item['preco'] * $item['quantidade'];
+    $sql_item = "INSERT INTO vendas_itens (id_venda, produto, quantidade, preco_unitario, subtotal) 
+                 VALUES ($id_venda, '{$item['nome']}', {$item['quantidade']}, {$item['preco']}, $subtotal)";
+    // Executa com a mesma conexão
+    if (!$res_venda->conn->query($sql_item)) {
+        echo "Erro ao inserir item: " . $res_venda->conn->error;
+        exit();
+    }
+}
+
+// Fecha a conexão que ficou aberta
+$res_venda->conn->close();
 
 unset($_SESSION['carrinho']);
 ?>
@@ -60,6 +68,7 @@ unset($_SESSION['carrinho']);
 </head>
 <body>
 
+<!-- Navbar -->
 <div class="navbar">
     <div class="nav-container">
         <a href="index.php" class="nav-logo">AnnaFell</a>

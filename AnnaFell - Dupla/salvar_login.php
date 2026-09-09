@@ -2,6 +2,8 @@
 if(!isset($_SESSION)) {
     session_start();
 }
+include "cons.php";
+require_once "DLL.php";
 
 extract($_POST);
 $cpf = $_SESSION['cpf_usuario'] ?? '';
@@ -12,12 +14,10 @@ if (empty($cpf)) {
 }
 
 $senha_criptografada = md5($senha);
-$arquivo = "login/" . $login . ".dat";
-$arq = fopen($arquivo, "w");
-fwrite($arq, $login . "\n");
-fwrite($arq, $senha_criptografada . "\n");
-fwrite($arq, $cpf . "\n");
-fclose($arq);
+
+// Inserir login
+$consulta = "INSERT INTO logins (login, senha, cpf) VALUES ('$login', '$senha_criptografada', '$cpf')";
+banco($server, $user, $password, $db, $consulta);
 
 unset($_SESSION['cpf_usuario']);
 header("Location: login.php?cadastro=ok");

@@ -2,8 +2,10 @@
 if(!isset($_SESSION)) {
     session_start();
 }
+include "cons.php";
+require_once "DLL.php";
 
-if (!isset($_SESSION['carrinho']) || empty($_SESSION['carrinho'])) { //se nao tiver nada, index
+if (!isset($_SESSION['carrinho']) || empty($_SESSION['carrinho'])) {
     header("Location: index.php");
     exit();
 }
@@ -11,21 +13,18 @@ if (!isset($_SESSION['carrinho']) || empty($_SESSION['carrinho'])) { //se nao ti
 extract($_POST);
 
 $senha_criptografada = md5($senha);
-$caminho = "login/" . $login . ".dat"; //caminho do arquivo
 
-if (file_exists($caminho)) {    //verificar login
-    $arq = fopen($caminho, "r");
-    fgets($arq); // pula linha do login
-    $senha_arquivo = trim(fgets($arq));
-    $cpf_usuario = trim(fgets($arq));
-    fclose($arq);
-    
-    if ($senha_criptografada === $senha_arquivo) { //verificar senha
+
+$consulta = "SELECT senha, cpf FROM logins WHERE login = '$login'";
+$resultado = banco($server, $user, $password, $db, $consulta);
+
+if ($linha = $resultado->fetch_assoc()) {
+    $senha_arquivo = $linha['senha'];
+    $cpf_usuario = $linha['cpf'];
+    if ($senha_criptografada === $senha_arquivo) {
         $_SESSION['usuario_logado'] = $login;
         $_SESSION['cpf_usuario'] = $cpf_usuario;
-        $_SESSION['Logado'] = 'ok';
-        $_SESSION['Nome'] = $login;
-        header("Location: confirmar.php"); //vai para confirmar
+        header("Location: confirmar.php");
         exit();
     } else {
         header("Location: erro.php");
