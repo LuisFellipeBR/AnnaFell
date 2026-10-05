@@ -1,0 +1,2093 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+    padding-bottom: 80px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Rodapé fixo */
+#rodape {
+    background-color: #6700af;
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 12px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    font-size: 14px;
+    z-index: 100;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Produtos */
+.produtos {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.produto {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.produto:hover {
+    transform: scale(1.02);
+}
+
+.produto-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.preco {
+    font-size: 18px;
+    font-weight: bold;
+    color: #9f12ca;
+    margin: 10px 0;
+}
+
+.btn-comprar {
+    background-color: #6163f8;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.btn-comprar:hover {
+    background-color: #710292;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+}
+
+.nav-logo {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #9f12ca;
+    text-decoration: none;
+}
+
+.nav-links a {
+    margin-left: 24px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: #9f12ca;
+}
+
+/* Modal de contato (tela maior) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+}
+
+.modal-conteudo {
+    background-color: white;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.fechar-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.fechar-modal:hover {
+    color: #9f12ca;
+}
+
+.modal-conteudo h3 {
+    color: #9f12ca;
+    margin-bottom: 20px;
+}
+
+.modal-conteudo p {
+    margin: 15px 0;
+    font-size: 1.1rem;
+}
+
+.modal-conteudo .btn {
+    margin-top: 20px;
+    background-color: #9f12ca;
+    width: auto;
+    padding: 10px 25px;
+}
+
+/* Carrinho */
+.carrinho-tabela {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.carrinho-linha {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.cabecalho {
+    background-color: #f8f6ff;
+    font-weight: 600;
+    color: #5a2e8a;
+}
+
+.celula-produto {
+    flex: 3;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.carrinho-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.celula-preco, .celula-quantidade, .celula-subtotal {
+    flex: 1;
+    text-align: center;
+}
+
+.celula-acao {
+    flex: 0.8;
+    text-align: center;
+}
+
+.input-quantidade {
+    width: 70px;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 40px;
+}
+
+.btn-remover {
+    background: none;
+    border: none;
+    color: #e04848;
+    cursor: pointer;
+}
+
+.carrinho-total {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 24px;
+    font-weight: bold;
+    border-top: 1px solid #eee;
+}
+
+.total-valor {
+    color: #9f12ca;
+    margin-left: 20px;
+    font-size: 1.4rem;
+}
+
+.carrinho-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.btn-finalizar {
+    background-color: #9f12ca;
+    color: white;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+.btn-voltar {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 12px 24px;
+    border-radius: 40px;
+    text-decoration: none;
+}
+
+.carrinho-vazio {
+    text-align: center;
+    background: white;
+    padding: 50px;
+    border-radius: 32px;
+}
+
+/* Formulários e confirmação */
+.form-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.campo {
+    margin-bottom: 15px;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.campo input, .campo select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.btn {
+    background-color: #710292;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+}
+
+.itens-confirmacao {
+    margin: 20px 0;
+}
+
+.item-confirmacao {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.item-img-confirmacao {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.total-final {
+    text-align: right;
+    font-size: 1.4rem;
+    color: #9f12ca;
+}
+
+.links-aux {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.mensagem-sucesso {
+    text-align: center;
+}
+
+.agradecimento {
+    background: #f8f0ff;
+    padding: 25px;
+    border-radius: 20px;
+    margin: 20px 0;
+}
+
+.numero-venda {
+    background: #9f12ca;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 40px;
+    display: inline-block;
+}
+
+.btn-login {
+    background-color: #ffe2f9;
+    color: rgb(255, 19, 184);
+    padding: 5px 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    
+    text-align: center;
+    text-decoration: none;
+    width: 40%;
+
+}
+
+.btn-login:hover {
+    background-color: #ffe3fe;
+}
+/* ============================================
+   ANNAFELL - ESTILO COMPLETO (DARK / NEON)
+   ============================================ */
+
+/* ---------- RESET ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a0b2e;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-bottom: 80px;
+}
+
+/* ---------- BANNER DO TOPO ---------- */
+.af-topo-site {
+    width: 100%;
+    background-color: #0d0515;
+    text-align: center;
+}
+
+.af-banner-principal {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
+}
+
+/* ---------- NAVBAR ---------- */
+.af-navbar {
+    background-color: #7b2cbf;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    position: relative;
+    z-index: 1000;
+}
+
+.af-nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.af-nav-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.af-nav-links > a,
+.af-dropdown > a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 15px 22px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background 0.3s;
+    display: block;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.af-nav-links > a:hover,
+.af-dropdown > a:hover {
+    background-color: #9d4edd;
+}
+
+/* ---------- DROPDOWN PRODUTOS ---------- */
+.af-dropdown {
+    position: relative;
+}
+
+.af-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #7b2cbf;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    z-index: 1001;
+    top: 100%;
+    left: 0;
+}
+
+.af-dropdown:hover .af-dropdown-content {
+    display: block;
+}
+
+.af-dropdown-content > .af-submenu > a,
+.af-dropdown-content > a {
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #9d4edd;
+    color: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+}
+
+.af-dropdown-content > .af-submenu > a:hover,
+.af-dropdown-content > a:hover {
+    background-color: #9d4edd;
+}
+
+/* ---------- SUBMENU (abre pra direita) ---------- */
+.af-submenu {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.af-submenu-content {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background-color: #7b2cbf;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    z-index: 1002;
+    border: 1px solid #9d4edd;
+}
+
+.af-submenu:hover .af-submenu-content {
+    display: block;
+}
+
+.af-submenu-content a {
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #9d4edd;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.af-submenu-content a:hover {
+    background-color: #9d4edd;
+}
+
+/* ---------- CONTAINER ---------- */
+.af-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ---------- BANNER DESTAQUE ---------- */
+.af-banner-destaque {
+    background: linear-gradient(135deg, #2b0f4c 0%, #1a0b2e 100%);
+    border-radius: 15px;
+    padding: 40px;
+    margin-bottom: 30px;
+    text-align: center;
+    border: 1px solid #7b2cbf;
+    box-shadow: 0 0 20px rgba(123, 44, 191, 0.3);
+}
+
+.af-banner-destaque h1 {
+    font-size: 3rem;
+    color: #fff;
+    text-shadow: 0 0 10px #9d4edd, 0 0 20px #9d4edd;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.af-banner-destaque p {
+    font-size: 1.2rem;
+    color: #c77dff;
+    letter-spacing: 1px;
+}
+
+/* ---------- GRID CATEGORIAS ---------- */
+.af-categorias-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.af-categoria-card {
+    background-color: #240b36;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    border: 1px solid #3c096c;
+}
+
+.af-categoria-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px #9d4edd;
+    border-color: #9d4edd;
+}
+
+.af-categoria-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.af-categoria-card h3 {
+    padding: 15px;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* ============================================================
+   PRODUTOS — versão alinhada (altura fixa)
+   ============================================================ */
+
+.af-produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 260px);
+    gap: 20px;
+    justify-content: center;
+    align-items: stretch;
+    margin-bottom: 30px;
+}
+
+.af-produto {
+    background-color: #240b36;
+    border: 1px solid #3c096c;
+    border-radius: 15px;
+    padding: 15px;
+    width: 260px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.af-produto:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.6);
+    border-color: #9d4edd;
+}
+
+.af-produto-img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    padding: 10px;
+    flex-shrink: 0;
+}
+
+.af-produto h3 {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    height: 50px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.af-produto p {
+    color: #b0b0b0;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    height: 55px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.af-preco {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #c77dff;
+    margin-top: auto;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
+.af-btn-comprar {
+    background-color: #7b2cbf;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    transition: background 0.3s, box-shadow 0.3s;
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+.af-btn-comprar:hover {
+    background-color: #9d4edd;
+    box-shadow: 0 0 15px #9d4edd;
+}
+
+/* ---------- CARRINHO ---------- */
+.af-carrinho-tabela {
+    background: #240b36;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    margin-bottom: 24px;
+    border: 1px solid #3c096c;
+}
+
+.af-carrinho-linha {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #3c096c;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.af-cabecalho {
+    background-color: #3c096c;
+    font-weight: 600;
+    color: #fff;
+}
+
+.af-celula-produto {
+    flex: 3;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #fff;
+    min-width: 180px;
+}
+
+.af-carrinho-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: #fff;
+    padding: 5px;
+}
+
+.af-celula-preco, .af-celula-quantidade, .af-celula-subtotal {
+    flex: 1;
+    text-align: center;
+    color: #c77dff;
+    font-weight: bold;
+    min-width: 90px;
+}
+
+.af-celula-acao {
+    flex: 0.8;
+    text-align: center;
+    min-width: 90px;
+}
+
+.af-input-quantidade {
+    width: 70px;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #7b2cbf;
+    border-radius: 40px;
+    background: #1a0b2e;
+    color: #fff;
+}
+
+.af-btn-remover {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.af-carrinho-total {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 24px;
+    font-weight: bold;
+    border-top: 1px solid #3c096c;
+    color: #fff;
+}
+
+.af-total-valor {
+    color: #c77dff;
+    margin-left: 20px;
+    font-size: 1.4rem;
+}
+
+.af-carrinho-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.af-btn-finalizar {
+    background-color: #9d4edd;
+    color: white;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    font-size: 1rem;
+}
+
+.af-btn-finalizar:hover {
+    background-color: #c77dff;
+    box-shadow: 0 0 15px #c77dff;
+}
+
+.af-btn-voltar {
+    background-color: #3c096c;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.af-btn-voltar:hover {
+    background-color: #5a189a;
+}
+
+.af-carrinho-vazio {
+    text-align: center;
+    background: #240b36;
+    padding: 50px;
+    border-radius: 32px;
+    border: 1px solid #3c096c;
+    color: #fff;
+}
+
+.af-carrinho-vazio .af-btn {
+    max-width: 300px;
+    margin: 20px auto 0;
+    display: block;
+}
+
+/* ---------- FORMULÁRIOS ---------- */
+.af-form-box {
+    background-color: #240b36;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 550px;
+    margin: 0 auto;
+    box-shadow: 0 0 20px rgba(123, 44, 191, 0.4);
+    border: 1px solid #3c096c;
+    color: #fff;
+}
+
+.af-form-box h2 {
+    color: #c77dff;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.af-campo {
+    margin-bottom: 15px;
+}
+
+.af-campo label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #c77dff;
+}
+
+.af-campo input, .af-campo select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #7b2cbf;
+    border-radius: 8px;
+    background-color: #1a0b2e;
+    color: #fff;
+    outline: none;
+    font-size: 1rem;
+}
+
+.af-campo input:focus, .af-campo select:focus {
+    border-color: #c77dff;
+    box-shadow: 0 0 10px #9d4edd;
+}
+
+.af-btn {
+    background-color: #7b2cbf;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.af-btn:hover {
+    background-color: #9d4edd;
+    box-shadow: 0 0 15px #9d4edd;
+}
+
+.af-btn-login {
+    background-color: #3c096c;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.af-btn-login:hover {
+    background-color: #5a189a;
+    box-shadow: 0 0 15px #9d4edd;
+}
+
+/* ---------- CONFIRMAÇÃO ---------- */
+.af-itens-confirmacao {
+    margin: 20px 0;
+    background: #1a0b2e;
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid #3c096c;
+}
+
+.af-item-confirmacao {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border-bottom: 1px solid #3c096c;
+    padding: 15px 0;
+    color: #fff;
+}
+
+.af-item-confirmacao:last-child {
+    border-bottom: none;
+}
+
+.af-item-img-confirmacao {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: #fff;
+    padding: 5px;
+}
+
+.af-total-final {
+    text-align: right;
+    font-size: 1.4rem;
+    color: #c77dff;
+    margin-top: 15px;
+}
+
+.af-links-aux {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.af-links-aux .af-btn-login {
+    width: 48%;
+    margin-top: 0;
+}
+
+.af-mensagem-sucesso {
+    text-align: center;
+}
+
+.af-agradecimento {
+    background: #1a0b2e;
+    padding: 25px;
+    border-radius: 20px;
+    margin: 20px 0;
+    border: 1px solid #3c096c;
+    color: #fff;
+    line-height: 1.8;
+}
+
+.af-numero-venda {
+    background: #9d4edd;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 40px;
+    display: inline-block;
+}
+
+/* ---------- MODAL ---------- */
+.af-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+}
+
+.af-modal-conteudo {
+    background-color: #240b36;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 0 30px #9d4edd;
+    position: relative;
+    border: 1px solid #7b2cbf;
+    color: #fff;
+    line-height: 1.8;
+}
+
+.af-fechar-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #c77dff;
+}
+
+.af-fechar-modal:hover {
+    color: #fff;
+}
+
+.af-modal-conteudo h3 {
+    color: #c77dff;
+    margin-bottom: 20px;
+}
+
+/* ---------- RODAPÉ ---------- */
+#af-rodape {
+    background-color: #7b2cbf;
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    font-size: 14px;
+    z-index: 100;
+    font-weight: bold;
+}
+
+/* ============================================================
+   CLASSES AUXILIARES (sem style inline)
+   ============================================================ */
+
+.af-secao-titulo {
+    color: #c77dff;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.5rem;
+}
+
+.af-secao-titulo-destaque {
+    color: #c77dff;
+    text-align: center;
+    margin: 40px 0 20px;
+    font-size: 1.5rem;
+}
+
+.af-btn-inline {
+    display: inline-block;
+    width: auto;
+    padding: 10px 30px;
+}
+
+.af-btn-auto {
+    width: auto;
+}
+
+.af-texto-centro {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.af-destaque-texto {
+    color: #c77dff;
+}
+
+.af-texto-cinza {
+    color: #b0b0b0;
+}
+
+.af-form-box-grande {
+    max-width: 700px;
+}
+
+.af-form-box-extra-grande {
+    max-width: 800px;
+}
+
+.af-form-box-centro {
+    text-align: center;
+}
+
+.af-conteudo-texto {
+    color: #fff;
+    line-height: 2;
+    font-size: 1.05rem;
+}
+
+.af-conteudo-texto p {
+    margin-bottom: 10px;
+}
+
+.af-divisor {
+    margin: 25px 0;
+    border: none;
+    border-top: 1px solid #3c096c;
+}
+
+.af-subtitulo {
+    color: #c77dff;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.af-paragrafo-centro {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.af-bloco-destaque {
+    margin-bottom: 20px;
+}
+
+.af-citacao-final {
+    text-align: center;
+    font-style: italic;
+    color: #c77dff;
+    font-size: 1.1rem;
+}
+
+.af-botoes-laterais {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.af-botoes-laterais .af-btn-login {
+    width: 48%;
+    margin-top: 0;
+}
+
+.af-info-usuario {
+    margin-bottom: 20px;
+}
+
+.af-negrito {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.af-link-limpo {
+    text-decoration: none;
+}
+
+.af-msg-sucesso {
+    color: #4ade80;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.af-erro {
+    color: #ff6b6b;
+    margin: 15px 0;
+}
+
+/* ============================================================
+   INDICADOR DE USUÁRIO NA NAVBAR (lado direito)
+   ============================================================ */
+.af-navbar {
+    position: relative;
+}
+
+.af-nav-container {
+    position: relative;
+    justify-content: center;
+}
+
+.af-usuario-header {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(26, 11, 46, 0.85);
+    padding: 5px 14px 5px 6px;
+    border-radius: 40px;
+    border: 1px solid #9d4edd;
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+    z-index: 10;
+}
+
+.af-foto-header {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #9d4edd;
+    background: #240b36;
+    flex-shrink: 0;
+}
+
+.af-inicial-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #fff;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+    text-transform: uppercase;
+}
+
+.af-inicial-deslogado {
+    background: linear-gradient(135deg, #3c096c, #5a189a);
+    color: #c77dff;
+}
+
+.af-info-header {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.af-nome-header {
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.af-nome-deslogado {
+    color: #c77dff;
+    font-style: italic;
+}
+
+.af-link-header {
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: bold;
+    margin-top: 1px;
+}
+
+.af-link-entrar {
+    color: #4ade80;
+}
+
+.af-link-entrar:hover {
+    color: #86efac;
+}
+
+.af-link-sair {
+    color: #ff6b6b;
+}
+
+.af-link-sair:hover {
+    color: #ff9999;
+}
+
+/* Link do nome no cabeçalho que leva ao perfil */
+.af-usuario-info-link {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.af-nome-link {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.2s;
+}
+
+.af-nome-link:hover {
+    color: #c77dff;
+}
+
+/* ============================================================
+   AÇÕES DA PÁGINA "NÃO LOGADO"
+   ============================================================ */
+.af-acoes-nao-logado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.af-acoes-nao-logado .af-btn,
+.af-acoes-nao-logado .af-btn-secundario,
+.af-acoes-nao-logado .af-btn-terciario {
+    width: 100%;
+    max-width: 280px;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.af-acoes-nao-logado .af-btn {
+    background: #7b2cbf;
+    color: #fff;
+    border: 2px solid #7b2cbf;
+}
+
+.af-acoes-nao-logado .af-btn:hover {
+    background: #9d4edd;
+    border-color: #9d4edd;
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.6);
+}
+
+.af-btn-secundario {
+    background: transparent;
+    color: #c77dff;
+    border: 2px solid #7b2cbf;
+}
+
+.af-btn-secundario:hover {
+    background: rgba(123, 44, 191, 0.2);
+    border-color: #9d4edd;
+    color: #fff;
+}
+
+.af-btn-terciario {
+    background: transparent;
+    color: #b0b0b0;
+    border: 2px solid transparent;
+    font-size: 14px !important;
+}
+
+.af-btn-terciario:hover {
+    color: #c77dff;
+}
+
+/* ============================================================
+   FOTO DE PERFIL (form_foto) — Alinhado e minimalista
+   ============================================================ */
+.af-bloco-foto {
+    text-align: center;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.af-mensagem-foto {
+    background: #1a0b2e;
+    color: #c77dff;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-weight: bold;
+    border: 1px solid #7b2cbf;
+    text-align: center;
+    max-width: 90%;
+    margin: 0;
+}
+
+.af-foto-perfil-grande {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #9d4edd;
+    background: #1a0b2e;
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
+    display: block;
+}
+
+.af-form-foto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+}
+
+.af-label-foto {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    color: #c77dff;
+    font-size: 14px;
+    width: 100%;
+}
+
+.af-form-foto input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #7b2cbf;
+    border-radius: 8px;
+    background: #1a0b2e;
+    color: #fff;
+    font-size: 13px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.af-form-foto input[type="file"]::file-selector-button {
+    background: #7b2cbf;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 12px;
+    transition: 0.3s;
+}
+
+.af-form-foto input[type="file"]::file-selector-button:hover {
+    background: #9d4edd;
+}
+
+.af-btn-foto-enviar {
+    display: block;
+    width: 200px;
+    padding: 10px 0;
+    background: #7b2cbf;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.af-btn-foto-enviar:hover {
+    background: #9d4edd;
+    box-shadow: 0 0 15px #9d4edd;
+}
+
+.af-form-remover {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+}
+
+.af-btn-foto-remover {
+    display: block;
+    width: 200px;
+    padding: 10px 0;
+    background: #3c096c;
+    color: #ff6b6b;
+    border: 1px solid #7b2cbf;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+    margin: 0 auto;
+}
+
+.af-btn-foto-remover:hover {
+    background: #5a189a;
+    color: #fff;
+}
+
+/* ============================================================
+   FLASH MESSAGES (sucesso / erro)
+   ============================================================ */
+.af-flash {
+    display: block;
+    text-align: center;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 0 auto 20px auto;
+    max-width: 380px;
+    animation: afFlashIn 0.3s ease-out;
+}
+
+.af-flash-sucesso {
+    background: rgba(74, 222, 128, 0.15);
+    color: #4ade80;
+    border: 1px solid #4ade80;
+    box-shadow: 0 0 12px rgba(74, 222, 128, 0.4);
+}
+
+.af-flash-erro {
+    background: rgba(255, 107, 107, 0.15);
+    color: #ff6b6b;
+    border: 1px solid #ff6b6b;
+    box-shadow: 0 0 12px rgba(255, 107, 107, 0.4);
+}
+
+@keyframes afFlashIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   HISTÓRICO DE COMPRAS (Meu Perfil)
+   ============================================================ */
+.af-historico-box {
+    background-color: #240b36;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 30px auto 0 auto;
+    max-width: 550px;
+    border: 1px solid #3c096c;
+    box-shadow: 0 0 20px rgba(123, 44, 191, 0.4);
+}
+
+.af-historico-titulo {
+    color: #c77dff;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.af-historico-subtitulo {
+    text-align: center;
+    color: #b0b0b0;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.af-historico-vazio {
+    text-align: center;
+    padding: 20px 0;
+    color: #fff;
+}
+
+.af-historico-vazio p {
+    margin-bottom: 20px;
+    color: #b0b0b0;
+}
+
+/* -------- Card de cada compra -------- */
+.af-compra-card {
+    background: #1a0b2e;
+    border: 1px solid #3c096c;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.af-compra-card:hover {
+    border-color: #9d4edd;
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.35);
+}
+
+.af-compra-header {
+    background: #3c096c;
+    padding: 14px 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.af-compra-numero {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.af-compra-label {
+    color: #c77dff;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.af-compra-numero strong {
+    font-size: 15px;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+.af-compra-data {
+    color: #c77dff;
+    font-size: 13px;
+}
+
+.af-compra-pagamento {
+    color: #4ade80;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* -------- Itens dentro da compra -------- */
+.af-compra-itens {
+    padding: 12px 18px;
+}
+
+.af-compra-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(60, 9, 108, 0.5);
+}
+
+.af-compra-item:last-child {
+    border-bottom: none;
+}
+
+.af-compra-item-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 8px;
+    padding: 4px;
+    flex-shrink: 0;
+}
+
+.af-compra-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.af-compra-item-info strong {
+    color: #fff;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.af-compra-item-info span {
+    color: #b0b0b0;
+    font-size: 12px;
+}
+
+.af-compra-item-subtotal {
+    color: #c77dff;
+    font-weight: bold;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+/* -------- Total da compra -------- */
+.af-compra-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    background: #3c096c;
+    color: #fff;
+    font-size: 14px;
+}
+
+.af-compra-total span {
+    color: #c77dff;
+    font-weight: bold;
+}
+
+.af-compra-total strong {
+    font-size: 1.2rem;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(199, 125, 255, 0.5);
+}
+
+/* ============================================================
+   PERFIL ESTILO PAINEL (sidebar + conteúdo)
+   ============================================================ */
+.af-perfil-wrapper {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 25px;
+    align-items: start;
+    margin-top: 20px;
+}
+
+/* -------- Sidebar -------- */
+.af-perfil-sidebar {
+    background: #240b36;
+    border: 1px solid #3c096c;
+    border-radius: 15px;
+    padding: 20px 15px;
+    box-shadow: 0 0 20px rgba(123, 44, 191, 0.4);
+    position: sticky;
+    top: 20px;
+}
+
+.af-sidebar-usuario {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #3c096c;
+    margin-bottom: 15px;
+}
+
+.af-sidebar-foto {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #9d4edd;
+    background: #1a0b2e;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+}
+
+.af-sidebar-nome {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.af-sidebar-nome strong {
+    color: #fff;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.af-sidebar-nome span {
+    color: #b0b0b0;
+    font-size: 11px;
+}
+
+.af-sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.af-sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    position: relative;
+}
+
+.af-sidebar-link:hover {
+    background: rgba(123, 44, 191, 0.25);
+    color: #fff;
+}
+
+.af-sidebar-link.ativo {
+    background: #7b2cbf;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 0 12px rgba(157, 78, 221, 0.5);
+}
+
+.af-icone {
+    font-size: 18px;
+    width: 22px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.af-sidebar-divisor {
+    border: none;
+    border-top: 1px solid #3c096c;
+    margin: 12px 0;
+}
+
+.af-sidebar-sair:hover {
+    background: rgba(255, 107, 107, 0.15);
+    color: #ff6b6b;
+}
+
+.af-badge {
+    margin-left: auto;
+    background: #9d4edd;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+/* -------- Conteúdo -------- */
+.af-perfil-conteudo {
+    min-width: 0;
+}
+
+.af-card-painel {
+    background: #240b36;
+    border: 1px solid #3c096c;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(123, 44, 191, 0.4);
+}
+
+.af-card-painel h2 {
+    color: #c77dff;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.af-card-painel-foto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.af-card-painel-foto h2 {
+    text-align: center;
+    width: 100%;
+}
+
+/* -------- Resumo (aba Início) -------- */
+.af-resumo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.af-resumo-card {
+    background: #1a0b2e;
+    border: 1px solid #3c096c;
+    border-radius: 12px;
+    padding: 20px 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.af-resumo-card:hover {
+    border-color: #9d4edd;
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.35);
+}
+
+.af-resumo-icone {
+    font-size: 26px;
+    margin-bottom: 4px;
+}
+
+.af-resumo-card strong {
+    font-size: 1.8rem;
+    color: #c77dff;
+    line-height: 1;
+}
+
+.af-resumo-card span {
+    color: #b0b0b0;
+    font-size: 13px;
+    text-align: center;
+}
+
+.af-resumo-link {
+    margin-top: 10px;
+    color: #4ade80;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.af-resumo-link:hover {
+    color: #86efac;
+}
+
+/* -------- Ajuda -------- */
+.af-ajuda-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.af-ajuda-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #1a0b2e;
+    border: 1px solid #3c096c;
+    border-radius: 10px;
+    padding: 14px 18px;
+}
+
+.af-ajuda-icone {
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.af-ajuda-item strong {
+    display: block;
+    color: #c77dff;
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+.af-ajuda-item span {
+    color: #e0e0e0;
+    font-size: 13px;
+}
+
+/* -------- Responsivo -------- */
+@media (max-width: 800px) {
+    .af-perfil-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .af-perfil-sidebar {
+        position: relative;
+        top: 0;
+    }
+}
+
+/* ============================================================
+   ÍCONES EM IMAGEM (substituem emojis)
+   ============================================================ */
+.af-icone-img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    flex-shrink: 0;
+    /* Converte automaticamente o ícone preto em branco */
+    filter: brightness(0) invert(1);
+    transition: filter 0.2s;
+}
+
+/* Quando o item NÃO está ativo e passa o mouse, fica lilás claro */
+.af-sidebar-link:hover .af-icone-img {
+    filter: brightness(0) invert(1) opacity(0.9);
+}
+
+/* No item ATIVO (fundo roxo), ícone permanece branco puro */
+.af-sidebar-link.ativo .af-icone-img {
+    filter: brightness(0) invert(1);
+}
+
+/* Ícone "Sair" — quando hover, fica vermelho suave */
+.af-sidebar-sair:hover .af-icone-img {
+    filter: none;
+}
+
+/* ============================================================
+   ESTOQUE
+   ============================================================ */
+.af-estoque {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin: 6px 0;
+    text-align: center;
+}
+
+.af-estoque-mini {
+    display: block;
+    font-size: 11px;
+    padding: 2px 8px;
+    margin-top: 4px;
+}
+
+.af-estoque-bloco {
+    display: block;
+    margin-top: 8px;
+}
+
+/* Cores */
+.af-estoque-ok {
+    background: rgba(74, 222, 128, 0.15);
+    color: #4ade80;
+    border: 1px solid #4ade80;
+}
+
+.af-estoque-baixo {
+    background: rgba(255, 200, 0, 0.15);
+    color: #ffc800;
+    border: 1px solid #ffc800;
+    animation: afPulse 1.6s infinite;
+}
+
+.af-estoque-esgotado {
+    background: rgba(255, 107, 107, 0.15);
+    color: #ff6b6b;
+    border: 1px solid #ff6b6b;
+}
+
+@keyframes afPulse {
+    0%, 100% { box-shadow: 0 0 0 rgba(255, 200, 0, 0); }
+    50%      { box-shadow: 0 0 10px rgba(255, 200, 0, 0.6); }
+}
+
+/* Botão desabilitado quando esgotado */
+.af-btn-esgotado {
+    background: #3c096c !important;
+    color: #888 !important;
+    cursor: not-allowed !important;
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.af-btn-esgotado:hover {
+    background: #3c096c !important;
+    box-shadow: none !important;
+
+    /* ============================================================
+   FORM DO BOTÃO "COMPRAR" (POST)
+   ============================================================ */
+.af-form-comprar {
+    margin-top: auto;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.af-form-comprar .af-btn-comprar {
+    width: 100%;
+    font-family: inherit;
+    text-align: center;
+}
